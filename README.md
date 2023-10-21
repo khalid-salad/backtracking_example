@@ -1,8 +1,8 @@
 # Backtracking
 
 A problem is suitable for backtracking when you can:
-    1) Incrementally build a solution to the problem (called a partial candidate solution)
-    2) Verify that a partial candidate solution can be rejected *before* it is finished
+1) Incrementally build a solution to the problem (called a partial candidate solution)
+2) Verify that a partial candidate solution can be rejected *before* it is finished
 
 A classic example is n-Queens. Given an `n x n` chessboard, place `n` queens so that no queens
 are on the same row, column, or diagonal. 
