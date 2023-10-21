@@ -53,7 +53,7 @@ def n_queens(n):
 
     def reject(candidate):
         same_col = (len(candidate) > len(set(candidate)))
-        same_diag = any(x1 - y1 == x2 - y2 x1 + y1 == x2 + y2 for (x1, y1), (x2, y2) in combinations(enumerate(candidate), 2))
+        same_diag = any(x1 - y1 == x2 - y2 for (x1, y1), (x2, y2) in combinations(enumerate(candidate), 2))
         same_antidiag = any(x1 + y1 == x2 + y2 for (x1, y1), (x2, y2) in combinations(enumerate(candidate), 2))
         return same_col or same_diag or same_antidiag
 
