@@ -70,9 +70,8 @@ def n_queens_bt(n):
         for child in children(node):
             dfs(child)
 
-    root = []
-    dfs(root)
-    yield from result
+    dfs([])
+    return result
 ```
 
 Note that there is an interplay between the `children` function and the `reject` function --- that is, `children`
@@ -100,5 +99,5 @@ def n_queens_bf(n):
         same_diag = any(x1 - y1 == x2 - y2 for (x1, y1), (x2, y2) in combinations(enumerate(board), 2))
         same_antidiag = any(x1 + y1 == x2 + y2 for (x1, y1), (x2, y2) in combinations(enumerate(board), 2))
         return same_col or same_diag or same_antidiag
-    yield from (board for board in boards if not reject(board))
+    return [board for board in boards if not reject(board)]
 ```
