@@ -75,8 +75,8 @@ def n_queens_bt(n):
     yield from result
 ```
 
-Note that there is an interplay between the `children` function and the `reject` function --- that is, our children
-function never generates two partial candidate solutions with queens on the same row, so `reject` does not need
+Note that there is an interplay between the `children` function and the `reject` function --- that is, `children`
+never generates a partial candidate solution with queens on the same row, so `reject` does not need
 to test for this. We could also modify the `children` function to not generate partial candidate solutions with
 queens on the same column, the same diagonal, the same anti-diagonal, etc.
 
@@ -87,8 +87,7 @@ def reject(candidate):
     return False
 ```
 
-then our dfs will necessarily explore the entire tree (note that we would need to modify `accept` as well,
-in this case, since it calls `reject`). In that case, it is just conventional brute-force, exploring all possible
+then our dfs will necessarily explore the entire tree. In that case, it is just conventional brute-force, exploring all possible
 solutions. In the case of n-Queens, it is identical to the following:
 
 ```python
