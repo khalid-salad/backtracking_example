@@ -7,7 +7,7 @@ A problem is suitable for backtracking when you can:
 A classic example is n-Queens. Given an `n x n` chessboard, place `n` queens so that no queens
 are on the same row, column, or diagonal. 
 
-In general, *all* backtracking algorithms can be thought of as DFS on a tree, where the root
+In general, *all* backtracking algorithms can be thought of as DFS on a tree where the root
 is an empty solution, internal nodes are partial candidate solutions, and leaves are full
 (but not necessarily valid) solutions. Thus, we can write the following as a general form
 of backtracking (where we wish to return a list containing all solutions --- this can be modified
