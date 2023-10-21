@@ -47,7 +47,7 @@ look something like
 ```python
 from itertools import combinations
 
-def n_queens(n):
+def n_queens_bt(n):
     def children(candidate):
         yield from (candidate + [i] for i in range(n))
 
@@ -72,7 +72,7 @@ def n_queens(n):
 
     root = []
     dfs(root)
-    return result
+    yield from result
 ```
 
 Note that there is an interplay between the `children` function and the `reject` function --- that is, our children
@@ -88,4 +88,18 @@ def reject(candidate):
 ```
 
 then our dfs will necessarily explore the entire tree (note that we would need to modify `accept` as well,
-in this case, since it calls `reject`).
+in this case, since it calls `reject`). In that case, it is just conventional brute-force, exploring all possible
+solutions. In the case of n-Queens, it is identical to the following:
+
+```python
+from itertools import product
+
+def n_queens_bf(n):
+    boards = product(range(n), repeat=n)
+    def reject(board):
+        same_col = (len(board) > len(set(board)))
+        same_diag = any(x1 - y1 == x2 - y2 for (x1, y1), (x2, y2) in combinations(enumerate(board), 2))
+        same_antidiag = any(x1 + y1 == x2 + y2 for (x1, y1), (x2, y2) in combinations(enumerate(board), 2))
+        return same_col or same_diag or same_antidiag
+    yield from (board for board in boards if not reject(board))
+```
