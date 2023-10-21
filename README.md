@@ -18,10 +18,10 @@ def backtracking(problem):
     def children(candidate):
         # yields the next partial candidate solutions from candidate
     def reject(candidate):
-        # returns True if the partial candidate solution can be rejected
+        # returns True if the partial candidate solution can be rejected, else False
     def accept(candidate):
         # returns True if the partial candidate solution cannot be rejected
-        # AND the candidate is a full solution
+        # AND the candidate is a full solution, else False
 
     result = [] # stores all solutions 
     def dfs(node):
