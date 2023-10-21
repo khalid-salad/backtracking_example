@@ -48,17 +48,17 @@ look something like
 from itertools import combinations
 
 def n_queens_bt(n):
-    def children(candidate):
-        yield from (candidate + [i] for i in range(n))
+    def children(board):
+        yield from (board + [i] for i in range(n))
 
     def reject(candidate):
-        same_col = (len(candidate) > len(set(candidate)))
-        same_diag = any(x1 - y1 == x2 - y2 for (x1, y1), (x2, y2) in combinations(enumerate(candidate), 2))
-        same_antidiag = any(x1 + y1 == x2 + y2 for (x1, y1), (x2, y2) in combinations(enumerate(candidate), 2))
+        same_col = (len(board) > len(set(board)))
+        same_diag = any(x1 - y1 == x2 - y2 for (x1, y1), (x2, y2) in combinations(enumerate(board), 2))
+        same_antidiag = any(x1 + y1 == x2 + y2 for (x1, y1), (x2, y2) in combinations(enumerate(board), 2))
         return same_col or same_diag or same_antidiag
 
-    def accept(candidate):
-        return not reject(candidate) and len(candidate) == n
+    def accept(board):
+        return not reject(board) and len(board) == n
 
     result = []  # stores all solutions 
     def dfs(node):
@@ -82,7 +82,7 @@ queens on the same column, the same diagonal, the same anti-diagonal, etc.
 Finally, notice that if we define reject as:
 
 ```python
-def reject(candidate):
+def reject(board):
     return False
 ```
 
@@ -94,7 +94,7 @@ from itertools import product
 
 def n_queens_bf(n):
     boards = product(range(n), repeat=n)
-    def accept(board):
+    def accept(board):  # assumes board is of length n
         same_col = (len(board) > len(set(board)))
         same_diag = any(x1 - y1 == x2 - y2 for (x1, y1), (x2, y2) in combinations(enumerate(board), 2))
         same_antidiag = any(x1 + y1 == x2 + y2 for (x1, y1), (x2, y2) in combinations(enumerate(board), 2))
