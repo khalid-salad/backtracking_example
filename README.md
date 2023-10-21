@@ -94,10 +94,10 @@ from itertools import product
 
 def n_queens_bf(n):
     boards = product(range(n), repeat=n)
-    def reject(board):
+    def accept(board):
         same_col = (len(board) > len(set(board)))
         same_diag = any(x1 - y1 == x2 - y2 for (x1, y1), (x2, y2) in combinations(enumerate(board), 2))
         same_antidiag = any(x1 + y1 == x2 + y2 for (x1, y1), (x2, y2) in combinations(enumerate(board), 2))
-        return same_col or same_diag or same_antidiag
-    return [board for board in boards if not reject(board)]
+        return not (same_col or same_diag or same_antidiag)
+    return [board for board in boards if accept(board)]
 ```
