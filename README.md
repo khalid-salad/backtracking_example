@@ -57,7 +57,7 @@ def n_queens_bt(n):
         same_antidiag = any(x1 + y1 == x2 + y2 for (x1, y1), (x2, y2) in combinations(enumerate(board), 2))
         return same_col or same_diag or same_antidiag
 
-    def accept(board):
+    def accept(candidate):
         return not reject(board) and len(board) == n
 
     result = []  # stores all solutions 
